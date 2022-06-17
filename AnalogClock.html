@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>stopwatch</title>
+	<style type="text/css">
+		div{
+			border: 2px solid blue;
+			height: 20%;
+			width: 20%;
+			border-radius: 50%;
+			position: absolute;
+			position: fixed;
+			justify-content: center;
+			text-align: center;
+			padding: 50px;
+			color: white;
+			background-color: rgba(34,45,6,7);
+		}
+		
+	</style>
+</head>
+<body>
+	<div>
+	<span id="minute">00</span>:
+	<span id="second">00</span>:
+	<span id="tens">00</span><br>
+	<br>
+	<button onclick="btstart()">start</button>
+	<button onclick="btstop()">stop</button>
+	<button onclick="btreset()">reset</button>
+	<button onclick="btresume()">resume</button>
+</div>
+
+</body>
+<script type="text/javascript">
+	let minute=00;
+	let second=00;
+	let tens=00;
+	let getminute=document.getElementById('minute');
+	let getsecond=document.getElementById('second');
+	let gettens=document.getElementById('tens');
+	let inverval;
+	function startTimer()
+	{
+		tens++;
+		if(tens<=9)
+		{
+			gettens.innerHTML='0'+tens;
+		}
+		if(tens>10)
+		{
+			gettens.innerHTML=tens;
+		}
+		if(tens>99)
+		{
+			second++;
+			getsecond.innerHTML='0'+second;
+			tens=0;
+			gettens.innerHTML='0'+tens;
+		}
+		if(second>10)
+
+		{
+			getsecond.innerHTML=second;
+		}
+		if(second>59)
+		{
+			minute++;
+			getminute.innerHTML='0'+minute;
+			second=0;
+			getsecond.innerHTML='0'+second;
+
+		}
+		if(minute>9)
+		{
+			getminute.innerHTML=minute;
+		}
+
+	}
+	function btstart()
+	{
+		inverval = setInterval(startTimer,10);
+
+	}
+	function  btstop()
+	{
+		clearInterval(inverval);
+
+	}
+	function btreset()
+	{
+		clearInterval(inverval);
+		minute='00';
+		second='00';
+		tens='00';
+
+		getminute.innerHTML=minute;
+		 getsecond.innerHTML=second;
+		 gettens.innerHTML=tens;
+
+
+
+	}
+	function btresume()
+	{
+		inverval = setInterval(startTimer,10);
+
+	}
+
+</script>
+</html>
